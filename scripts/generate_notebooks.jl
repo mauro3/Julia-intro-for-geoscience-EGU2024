@@ -1,4 +1,16 @@
+"""
+Short manual:
+
+- check Literate.jl https://fredrikekre.github.io/Literate.jl/v2/fileformat/
+- additionally there are the hash-tags #sol (included in solution) and #hint (included as hint in exercise notebook)
+- note that the solution-notebook is executed whereas the hint-notebook not
+- add your to `notebook_files`
+"""
+
 using Literate
+
+# add your notebook here:
+notebook_files = ["julia-basics.jl",]
 
 # this file-types are just copied over
 asset_files = [".png"]
@@ -180,7 +192,7 @@ end
 # make exercises and solution notebooks
 mkpath("../notebooks/figures")
 mkpath("../notebooks-solution/figures")
-for fl in ["julia-basics.jl",]
+for fl in notebook_files
     for typ in [:assignment, :sol]
         outputfolder = typ==:assignment ? "../notebooks" : "../notebooks-solution"
         process_file(fl, outputfolder, filetype=[:jl, :md, :nb][3],
