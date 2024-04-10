@@ -1,13 +1,20 @@
 """
 Short manual:
 
-- check Literate.jl https://fredrikekre.github.io/Literate.jl/v2/fileformat/
-- additionally there are the hash-tags #sol (included in solution) and #hint (included as hint in exercise notebook)
-- note that the solution-notebook is executed whereas the hint-notebook not
-- add your to `notebook_files`
+- read Literate.jl https://fredrikekre.github.io/Literate.jl/v2/fileformat/
+- additionally: there are the hash-tags #sol (included in solution) and #hint (included as hint in exercise notebook)
+- note that the solution-notebook is executed whereas the hint-notebook is not
+- use `julia-basics.jl` as an example
+- create the jl-script in this directory
+- add your script to `notebook_files` variable below
+- execute this file
+
+- if you have any asset files, put them into the `figures/` folder; they will be copied over.
 """
 
 using Literate
+
+@assert @__DIR__==pwd() "Need to be in scripts folder"
 
 # add your notebook here:
 notebook_files = ["julia-basics.jl",]
