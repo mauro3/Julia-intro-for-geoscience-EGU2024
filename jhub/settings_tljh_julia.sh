@@ -15,10 +15,10 @@ export timezone="Europe/Zurich"
 
 ## HTTPS setup, one of: none, self-cert, existing-cert, letsencrypt
 #############
-export https_setup=none
+export https_setup=letsencrypt
 
 # needs a value for option "letsencrypt", otherwise leave empty
-export email4letsencrypt=1
+export email4letsencrypt=d98lkd93l@runbox.com
 
 # Need a values for option "existing-cert,", otherwise leave empty
 # Point to existing key & certificate files.
