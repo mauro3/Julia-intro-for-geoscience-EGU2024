@@ -4,7 +4,7 @@
 # as needed for TheLittlestJupyterHub
 
 # get all settings
-./settings_tljh_julia.sh
+. ./settings_tljh_julia.sh
 
 # if [ "$1" == "-h" ]; then
 #   echo "Usage: `basename $0` <julia_version> <julia_packages>"
