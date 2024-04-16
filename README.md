@@ -7,6 +7,19 @@ Julia has been gaining traction in the geosciences over the last years in applic
 This course provides a hands-on introduction to get you started with Julia. We aim to give a broad overview of Julia and its ecosystem as well as going through hands-on coding exercises based around concrete earth science applications. In particular you will:
 - Learn about the Julia basics and why it is such an interesting language for science
 - Learn how to easily and efficiently manipulate data, as well as how to produce beautiful plots
-- Learn how to easily solve differential equations, and how to solve inverse optimization problems 
+- Learn how to easily solve differential equations, and how to solve inverse optimization problems
 
-Organizers: Mauro Werder, Lazaro Alonso Silva, Jordi Bolibar, Victor Boussange
+Organizers: Mauro Werder, Lazaro Alonso Silva, Jordi Bolibar
+
+## Content
+
+The content is organized into three notebooks:
+- Intro to the basics
+- Intro to geo-data & computations
+- Intro to scientific computing and inversions
+
+
+## Installation
+
+For the short course we will (try to) provide a Jupyter Hub server
+with all
