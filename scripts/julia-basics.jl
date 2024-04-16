@@ -174,7 +174,7 @@ md"""
 ###  Let's get our hands dirty!
 
 Fire up your JupyterHub:
-- go to Jupyter Hub server (url provided)
+- go to Jupyter Hub server on `egu2024.glads.net`
 - log in with a username and password of your choice
 - -> if it does not work than someone took that username already (or the server crashed)
 
