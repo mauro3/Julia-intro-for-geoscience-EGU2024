@@ -14,7 +14,7 @@ Short manual:
 
 using Literate
 
-@assert @__DIR__==pwd() "Need to be in scripts folder"
+@assert @__DIR__()==pwd() "Need to be in scripts folder"
 
 # add your notebook here:
 notebook_files = ["julia-basics.jl",]
