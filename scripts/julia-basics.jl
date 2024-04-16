@@ -3,40 +3,34 @@ using Markdown #src
 
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-# Tool for the job: introduction to Julia
+# Introduction to Julia
 
 ![julia-logo](./figures/l1_julia-logo.png)
 """
 
+
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Aside 1: Jupyter Notebooks
+# The team
+
+- Lazaro Alonso  (@lazarusA)
+  -
+- Jordi Bolibar (@JordiBolibar)
+  - developper of [ODINN.jl](https://github.com/ODINN-SciML/ODINN.jl)
+- Mauro Werder (@mauro3)
+  - glaciologist by day
+  - maintainer of a few Julia packages
+  - programming Julia since 2013
+"""
+
+#nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
+md"""
+## Aside: Jupyter Notebooks
 
 These slides are a [Jupyter notebook](https://jupyter.org/); a browser-based computational notebook.
-"""
 
-#nb # > 💡 note: You can follow the lecture along live from the Moodle-based [JupyterHub](https://moodle-app2.let.ethz.ch/course/view.php?id=20175) server.
-#md # \note{You can follow the lecture along live from the Moodle-based [JupyterHub](https://moodle-app2.let.ethz.ch/course/view.php?id=20175) server.}
-
-md"""
 Code cells are executed by putting the cursor into the cell and hitting `shift + enter`.  For more
 info see the [documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
-"""
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
-md"""
-## Aside 2: What is your previous programming experience?
-
-1. Julia
-2. Matlab, Python, Octave, R, ...
-3. C, Fortran, ...
-4. Pascal, Java, C++, ...
-5. Lisp, Haskell, ...
-6. Assembler
-7. Coq, Brainfuck, ...
-
-[Google survey link](https://docs.google.com/forms/d/1ROOY4QLaL-_vM8eXKhCp72FCPfaTshfCrR2syv562BE/edit#responses)
 """
 
 #src #########################################################################
@@ -51,8 +45,8 @@ language with a bend on technical computing.
 
 - first released in 2012
 - reached version 1.0 in 2018
-- current version 1.9.3 (09.2023) [ETH's JupyterHub is on 1.8]
-- thriving community, for instance there are currently around 10000 [packages registered](https://juliahub.com/ui/Packages)
+- current version 1.10.2 (04.2024)
+- thriving community, for instance there are currently around 11000 [packages registered](https://juliahub.com/ui/Packages)
 """
 
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -68,8 +62,8 @@ function lorenz(x)
     σ = 10
     β = 8/3
     ρ = 28
-    [σ*(x[2]-x[1]),
-     x[1]*(ρ-x[3]) - x[2],
+    [σ    * (x[2] - x[1]),
+     x[1] * (ρ - x[3]) - x[2],
      x[1]*x[2] - β*x[3]]
 end
 
@@ -81,9 +75,6 @@ out[:,1] = x₀
 for i=2:size(out,2)
     out[:,i] = out[:,i-1] + lorenz(out[:,i-1]) * dt
 end
-
-# Yes, this takes some time... Julia is Just-Ahead-of-Time compiled.  I.e. Julia is compiling.
-# (Note that Julia 1.9 improved a lot with respect to compilation time.)
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -98,13 +89,12 @@ And its solution plotted
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
 ### Julia in brief
-Julia 1.0 released 2018, now at version 1.9
+Julia 1.0 released 2018, now at version 1.10
 
 Features:
 - general purpose language with a focus on technical computing
 - dynamic language
-  - interactive development
-  - garbage collection
+- interactive development
 - good performance on par with C & Fortran
   - just-ahead-of-time compiled via LLVM
   - No need to vectorise: for loops are fast
@@ -176,21 +166,20 @@ md"""
 md"""
 ###  Let's get our hands dirty!
 
-Fire up your JupyterHub, either via the [Moodle page](https://moodle-app2.let.ethz.ch/course/view.php?id=20175), or directly via [this link](https://jhub-let-04-20175.let.ethz.ch/hub/home).
+Fire up your JupyterHub:
+- go to [egu2024.glads.net](egu2024.glads.net)
+- log in with a username and password of your choice
+- -> if it does not work than someone took that username already
 
-[Brief explanation on JupyterHub]
+You should find three Jupyter notebooks:
+- `julia-basics.jl`  -- this very notebook
+- TODO
+-
+
+Note that they are all on GitHub:
+[github.com/mauro3/Julia-intro-for-geoscience-EGU2024](https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024)
 """
 
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "fragment"}}
-md"""
-This notebook you can get onto your JupyterHub by
-
-- opening the hub
-- opening a terminal
-- pasting into the terminal `wget https://people.ee.ethz.ch/~werderm/l1.ipynb`
-
-Open it by clicking on it in the sidebar.
-"""
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
