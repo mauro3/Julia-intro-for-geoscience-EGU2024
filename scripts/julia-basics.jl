@@ -13,8 +13,9 @@ md"""
 md"""
 # The team
 
-- Lazaro Alonso  (@lazarusA)
-  -
+- Lazaro Alonso (@lazarusA)
+  - scientist by day, plotting wizard by night
+  - regular on Julia-discord, slack
 - Jordi Bolibar (@JordiBolibar)
   - developper of [ODINN.jl](https://github.com/ODINN-SciML/ODINN.jl)
 - Mauro Werder (@mauro3)
@@ -25,9 +26,18 @@ md"""
 
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Aside: Jupyter Notebooks
+# The format
 
-These slides are a [Jupyter notebook](https://jupyter.org/); a browser-based computational notebook.
+- Material is on GitHub https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024
+- We try to make this short course a little interactive and provide a Jupyter Hub
+  - this will Jupyter Hub will only run this morning
+"""
+
+#nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
+md"""
+## In case anyone doesn't know: Jupyter Notebooks
+
+This is a [Jupyter notebook](https://jupyter.org/); a browser-based computational notebook.
 
 Code cells are executed by putting the cursor into the cell and hitting `shift + enter`.  For more
 info see the [documentation](https://jupyter-notebook.readthedocs.io/en/stable/).
@@ -56,8 +66,6 @@ md"""
 An example solving the Lorenz system of ODEs:
 """
 
-## using Plots
-
 function lorenz(x)
     σ = 10
     β = 8/3
@@ -81,9 +89,8 @@ end
 md"""
 And its solution plotted
 """
-## plot(out[1,:], out[2,:], out[3,:])
-
-#md # ![lorenz](./figures/l1_lorenz.png)
+using Plots
+plot(out[1,:], out[2,:], out[3,:])
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -111,7 +118,7 @@ md"""
 ### The two language problem
 
 **One language to prototype   --  one language for production**
-- example from Ludovic's past: prototype in Matlab, production in CUDA-C
+- example from a co-worker: prototype in Matlab, production in CUDA-C
 
 **One language for the users  --  one language for under-the-hood**
 - Numpy (python -- C)
@@ -144,7 +151,7 @@ Production/fast language:
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-###  Julia solves the two-language problem
+###  Julia solves the two-language problem (mostly)
 
 Julia is:
 - easy to learn and use
@@ -167,19 +174,24 @@ md"""
 ###  Let's get our hands dirty!
 
 Fire up your JupyterHub:
-- go to [egu2024.glads.net](egu2024.glads.net)
+- go to Jupyter Hub server (url provided)
 - log in with a username and password of your choice
-- -> if it does not work than someone took that username already
+- -> if it does not work than someone took that username already (or the server crashed)
 
-You should find three Jupyter notebooks:
-- `julia-basics.jl`  -- this very notebook
-- TODO
--
-
-Note that they are all on GitHub:
-[github.com/mauro3/Julia-intro-for-geoscience-EGU2024](https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024)
 """
 
+#nb # %% A slide [markdown] {"slideshow": {"slide_type": "fragment"}}
+md"""
+You should find three Jupyter notebooks:
+- `julia-basics.jl`  -- this very notebook
+- `geo-ecosystem.ipynb` -- intro to geo-data processing and visualisation
+- `diff-eqs.ipynb` -- intro to solving and inverting ordinary differential equations
+
+Note that they are all on GitHub, on the repo for this short course:
+[github.com/mauro3/Julia-intro-for-geoscience-EGU2024](https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024)
+
+- -> there are also solution notebooks provided there!
+"""
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -191,12 +203,14 @@ We will now look at
 - control flow
 - functions
 - modules and packages
+"""
 
+md"""
 The documentation of Julia is good and can be found at [https://docs.julialang.org](https://docs.julialang.org); although for learning it might be a bit terse...
 
 There are also tutorials, see [https://julialang.org/learning/](https://julialang.org/learning/).
 
-Furthermore, documentation can be gotten with `?xyz`
+Furthermore, documentation can be gotten with `?xyz`.  Try it (in Jupyter notebooks this needs to be in a cell of its own):
 """
 
 ## ?cos
@@ -225,26 +239,14 @@ md"""
 ### Variables: Unicode
 From [https://docs.julialang.org/en/v1/manual/variables/](https://docs.julialang.org/en/v1/manual/variables/):
 
-Unicode names (in UTF-8 encoding) are allowed:
-
-```julia
-julia> δ = 0.00001
-1.0e-5
-
-julia> 안녕하세요 = "Hello"
-"Hello"
-```
-
-In the Julia REPL and several other Julia editing environments, you can type many Unicode math
-symbols by typing the backslashed LaTeX symbol name followed by tab. For example, the variable
-name `δ` can be entered by typing `\delta`-*tab*, or even `α̂⁽²⁾` by `\alpha`-*tab*-`\hat`-
-*tab*-`\^(2)`-*tab*. (If you find a symbol somewhere, e.g. in someone else's code,
-that you don't know how to type, the REPL help will tell you: just type `?` and
-then paste the symbol.)
+Unicode names (in UTF-8 encoding) are allowed and typed in LaTeX notation.  Try making a variable
+- `δ = 99` with `\delta`+tab
+- `x² = 25` with `x\^2`+tab
 """
 
-##
-
+#hint ##
+#sol δ = 99
+#sol x² = 25
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -273,17 +275,15 @@ Dict("a"=>1, "b"=>cos)
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Array exercises [15min]
+## Array exercises [3min]
 
-We will use arrays extensively in this course.
+Arrays are the bread and butter of science...
 
-Datatypes belonging to AbstactArrays:
-- `Array` (with aliases `Vector`, `Matrix`)
-- `Range`
-- GPU arrays, static arrays, etc
+- indexing starts at 1
+- uses `[]`
 """
 
-# Task: assign two vectors to `a`, and `b` and the concatenate them using `;`:
+# Task: assign vectors to `a`, and `b` and the concatenate them using `;`:
 
 a = [2, 3]
 #hint b = ...
@@ -293,28 +293,9 @@ a = [2, 3]
 
 # Add new elements to the end of Vector `b` (hint look up the documentation for `push!`)
 
-#hint ##
+#hint ## ?push!
 #sol push!(b, 1)
 #sol push!(b, 3, 4)
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises
-
-Concatenate a Range, say `1:10`, with a Vector, say [4,5]:
-"""
-
-#hint [  ;  ]
-#sol [1:10; [4,5]]
-
-
-md"""
-Make a random array of size (3,3).  Look up `?rand`.  Assign it to `a`
-"""
-
-#hint ##
-#sol a = rand(3,3)
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
@@ -324,13 +305,9 @@ md"""
 Access element `[1,2]` and `[2,1]` of Matrix `a` (hint use []):
 """
 
+a = rand(3,4)
 #hint a[ ... ], a[ ... ]
 #sol a[1,2], a[2,1]
-
-# Put those two values into a vector
-
-#hint ##
-#sol [ a[1,2], a[2,1] ]
 
 # Linear vs Cartesian indexing,
 # access the first element:
@@ -339,7 +316,6 @@ a[1]
 a[1,1]
 
 # Access the last element (look up `?end`) both with linear and Cartesian indices
-
 
 #hint a[...]
 #hint a[..., ...]
@@ -362,71 +338,16 @@ Access the last row of `a` (hint use `1:end`)
 #hint a[ ]
 #sol a[1:2, 1:2]
 
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises: variable bindings and views
 
-What do you make of
-"""
 
-a = [1 4; 3 4] # note, this is another way to define a Matrix
-c = a
-a[1, 2] = 99
-@assert c[1,2] == a[1,2]
-
-# Type your answer here (to start editing, double click into this cell.  When done shift+enter):
-
-#sol #
-#sol #md Both variables `a` and `c` refer to the same "thing".  Thus updating the array via one will show in the other.
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises: variable bindings and views
-
-An assignment _binds_ the same array to both variables
-"""
-c = a
-c[1] = 8
-@assert a[1]==8 # as c and a are the same thing
-@assert a===c  # note the triple `=`
-
-md"""
-Views vs copies:
-
-In Julia indexing with ranges will create a new array with copies of
-the original's entries. Consider
-"""
-a = rand(3,4)
-b = a[1:3, 1:2]
-b[1] = 99
-@assert a[1] != b[1]
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises: variable bindings and views
-
-But the memory footprint will be large if we work with large arrays and take sub-arrays of them.
-
-Views to the rescue
-"""
-a = rand(3,4)
-b = @view a[1:3, 1:2]
-b[1] = 99
-
-# check whether the change in `b` is reflected in `a`:
-
-#hint @assert ...
-#sol @assert a[1] == 99
+# ################################################################
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
 md"""
 ### A small detour: types
 
-All values have types as we saw above.  Arrays store in their type what type the elements can be.
+All values have types.  Arrays store in their type what type the elements can be.
 
 > Arrays which have concrete element-types are more performant!
 """
@@ -454,43 +375,12 @@ String["one", "two"]
 #sol push!(a, 5)
 #sol push!(a, "a")
 
-#-
-# Try to assgin 1.5 to the first element of an array of type Array{Int,1}
 
-#hint ##
-#sol # [1][1] = 1.5 ## would error
-
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises
-
-Create a uninitialised Matrix of size (3,3) and assign it to `a`.
-First look up the docs of Array with `?Array`
-"""
-
-#hint ##
-#sol a = Array{Any}(undef, 3, 3)
-
-#-
-# Test that its size is correct, see `size`
-
-#hint ##
-#sol size(a)
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Array exercises: ALL DONE
-
-The rest about Arrays you will learn-by-doing.
-"""
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Control flow [10min]
+## Control flow
 
 Julia provides a variety of [control flow constructs](https://docs.julialang.org/en/v1/manual/control-flow/), of which we look at:
 
@@ -503,61 +393,39 @@ Julia provides a variety of [control flow constructs](https://docs.julialang.org
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
 ### Conditional evaluation
-
-Read the first paragraph of
 [https://docs.julialang.org/en/v1/manual/control-flow/#man-conditional-evaluation](https://docs.julialang.org/en/v1/manual/control-flow/#man-conditional-evaluation)
-(up to "... and no further condition expressions or blocks are evaluated.")
-"""
 
-#-
-md"""
-Write a test which looks at the start of the string in variable `a`
-(?startswith) and sets `b` accordingly.  If the start is
-- "Wh" then set `b = "Likely a question"`
-- "The " then set `b = "A noun"`
-- otherwise set `b = "no idea"`
+if-blocks
 """
-
-#hint ##
-#sol a = "Where are the flowers"
-#sol if startswith(a, "Wh")
-#sol   b = "Likely a question"
-#sol elseif startswith(a, "The")
-#sol   b = "Likely a noun"
-#sol else
-#sol   b = "no idea"
-#sol end
+a = 77
+if a==45
+    println("Hi")
+elseif a==77
+    println("Hello")
+else
+    println("Grüss Gott")
+end
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
 md"""
 ### Conditional evaluation: the "ternary operator" `?`
-
-Look up the docs for `?` (i.e. evaluate `??`)
 """
-
-#hint ##
-#sol a = 1
-#sol a > 5 ? "really big" : "not so big"
+a = 1
+a > 5 ? "really big" : "not so big"
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
 ### Short circuit operators `&&` and `||`
 
-Read [https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation)
+[https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation](https://docs.julialang.org/en/v1/manual/control-flow/#Short-Circuit-Evaluation)
 
-Explain what this does
-
+Relatively often used in Julia:
 ```
 a < 0 && error("Not valid input for `a`")
 ```
 """
-
-# Type your answer here (to start editing, double click into this cell.  When done shift+enter):
-
-#sol # If `a < 0` evaluates to `true` then the bit after the `&&` is evaluated too,
-#sol # i.e. an error is thrown.  Otherwise, only `a < 0` is evaluated and no error is thrown.
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
@@ -585,7 +453,7 @@ end
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Functions [15min]
+## Functions
 
 Functions can be defined in Julia in a number of ways.  In particular there is one variant
 more suited to longer definitions, and one for one-liners:
@@ -599,62 +467,49 @@ f(a, b) = a * b
 
 Defining many, short functions is typical in good Julia code.
 
-Read [https://docs.julialang.org/en/v1/manual/functions/](https://docs.julialang.org/en/v1/manual/functions/) up to an including "The return Keyword"
+See [https://docs.julialang.org/en/v1/manual/functions/](https://docs.julialang.org/en/v1/manual/functions/)
 """
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
 md"""
-### Functions: exercises
+### Functions: exercises [5min]
 
-Define a function in long-form which takes two arguments.
-Use some if-else statements and the return keyword.
+Define a function `fn` in long-form which takes two arguments and multiplies them
 """
 
 #hint ##
 #sol function fn(a, b)
-#sol   if a> b
-#sol     return a
-#sol   else
-#sol     return b
-#sol   end
+#sol     return a*b
 #sol end
 
+## it should pass this thest
+a, b = rand(4,5), 7
+@assert fn(a,b) == a*b
+
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
 md"""
-### Functions: exercises
+### Functions: dot-syntax *IMPORTANT*
 
-Re-define the `map` function.  First look up what it does `?map`, then create a `mymap` which
-does the same.  Map `sin` over the vector `1:10`.
+Functions which are scalar functions in maths, say `cos`, are only defined for scalars in Julia!
 
-(Note, this is a higher-order function: a function which take a function as a argument)
+To apply them element-wise to vectors use `cos.([1,2])`.
+
+Similarly the dot also works for infix functions, say `.+`.
+
+Exercise: apply the `sin` function to a vector `1:10` and add `7`:
 """
 
 #hint ##
-#sol mymap(fn, a) = [fn(aa) for aa in a]
-#sol mymap(sin, 1:10)
-
-#src #########################################################################
-#nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
-md"""
-### Functions: dot-syntax
-
-This is really similar to the `map` function, a short-hand to map/broadcast a
-function over values.
-
-Exercise: apply the `sin` function to a vector `1:10`:
-"""
-
-#hint ##
-#sol=sin.(1:10)
+#sol sin.(1:10) .+ 7
 
 # Broadcasting will extend row and column vectors into a matrix.
 # Try `(1:10) .+ (1:10)'`  (Note the `'`, this is the transpose operator)
 
 #hint ##
-#sol=(1:10) .+ (1:10)'
+#sol (1:10) .+ (1:10)'
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
@@ -666,8 +521,8 @@ Evaluate the function `sin(x) + cos(y)` for
 """
 
 #hint ##
-#sol=x,y = 0:0.1:pi, -pi:0.1:pi
-#sol=sin.(x) .+ cos.(y')
+#sol x,y = 0:0.1:pi, -pi:0.1:pi
+#sol sin.(x) .+ cos.(y')
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
@@ -676,15 +531,10 @@ md"""
 
 So far our function got a name with the definition. They can also be defined without name.
 
-Read [https://docs.julialang.org/en/v1/manual/functions/#man-anonymous-functions](https://docs.julialang.org/en/v1/manual/functions/#man-anonymous-functions)
-
-Map the function `f(x,y) = sin(x) + cos(x)` over `1:10` but define it as an anonymous
-function.
+See [https://docs.julialang.org/en/v1/manual/functions/#man-anonymous-functions](https://docs.julialang.org/en/v1/manual/functions/#man-anonymous-functions)
 """
 
-#hint ##
-#sol map(x -> sin(x) + cos(x), 1:10)
-
+map(x -> sin(x) + cos(x), 1:10)
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
@@ -770,7 +620,7 @@ This is a key characteristic of the Julia package ecosystem.
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "slide"}}
 md"""
-## Modules and packages [5min]
+## Modules and packages
 
 Modules can be used to structure code into larger entities, and be used to divide it into
 different name spaces.  We will not make much use of those, but if interested see
@@ -793,27 +643,44 @@ plot( (1:10).^2 )
 md"""
 ### Packages
 
-**Note** package installation does not work on the moodle-Jupyterhub.  But it will work on your local installation.
-
 All public Julia packages are listed on [https://juliahub.com/ui/Packages](https://juliahub.com/ui/Packages).
 
-You can install a package, say `UnPack.jl` by
+You can install a package, say [`UnPack`](https://github.com/mauro3/UnPack.jl) by
 ```julia-repl
 using Pkg
-Pkg.add("UnPack.jl")
+Pkg.add("UnPack")
 using UnPack
 ```
 
 In the REPL, there is also a package-mode (hit `]`) which is for interactive use.
 """
 
-## Install a package (maybe not a too big one, UnPack.jl is good that way),
+## Install a package the UnPack.jl package
 ## use it, query help on the package itself:
+
+using Pkg
+#hint ##
+#sol Pkg.add("UnPack")
+#sol using UnPack
+
+#-
+
+#hint ##
+#sol #?UnPack
+
+md"""
+### Packages of this short course
+
+This short course uses a few packages, you can see them in the
+[Project.toml](https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024/blob/main/Project.toml) of the repo.
+Consult the README of https://github.com/mauro3/Julia-intro-for-geoscience-EGU2024 for how to install them on your local machine.
+"""
+
 
 #src #########################################################################
 #nb # %% A slide [markdown] {"slideshow": {"slide_type": "subslide"}}
 md"""
-## This concludes the rapid Julia tour
+## This concludes the rapid Julia intro
 
 There are many more features of Julia for sure but this should get you started, and setup for
 the exercises.  (Let us know if you feel we left something out which would have been helpful for the exercises).
@@ -821,5 +688,4 @@ the exercises.  (Let us know if you feel we left something out which would have 
 Remember you can self-help with:
 - using `?` at the notebook.  Similarly there is an `apropos` function.
 - the docs are your friend [https://docs.julialang.org/en/v1/](https://docs.julialang.org/en/v1/)
-- ask for help in our chat channel: see Moodle
 """

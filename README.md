@@ -14,12 +14,30 @@ Organizers: Mauro Werder, Lazaro Alonso Silva, Jordi Bolibar
 ## Content
 
 The content is organized into three notebooks:
-- Intro to the basics
-- Intro to geo-data & computations
-- Intro to scientific computing and inversions
+- Intro to the basics `julia-basics.ipynb`
+- Intro to geo-data & computations `geo-ecosystem.ipynb`
+- Intro to scientific computing and inversions `diff-eqs.ipynb`
 
+Notebooks are found in the `notebooks/` and `notebooks-solution/`
+folder, the latter being with hands-on stuff evaluated.
 
 ## Installation
 
 For the short course we will (try to) provide a Jupyter Hub server
-with all
+with all the packages installed and ready to go.
+
+If you want to run this on your computer, the following steps should
+work:
+
+- install Julia (do install 1.10 or later, as quality of life is much
+  better that way)
+- clone / download this repository
+- launch the Julia REPL in folder of the repository with `julia --project`
+- hit `]` to enter package mode and type `instantiate`
+  - this will take a long time (10min) to download and install all
+    packages (about 300 packages in total as the geo and differential
+    equation stacks are extensive; additionally it may pull in a
+    JupyterHub install via Conda)
+- restart the repl in the folder with `julia --project`
+- execute `using IJulia; notebook(dir=".")` which should open a
+  browser window with Jupyter running
