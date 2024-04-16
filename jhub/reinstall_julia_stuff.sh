@@ -24,7 +24,7 @@
 
 # parse arguments
 export julia_version="1.10.2"
-export julia_packages=Statistics:Markdown:Literate:Optimization:OptimizationOptimJL:Plots:OrdinaryDiffEq:DimensionalData:GeoMakie:CairoMakie:WGLMakie:Tyler:YAXArrays:NetCDF:Zarr
+export julia_packages=Downloads:Dates:Statistics:Markdown:Literate:Optimization:OptimizationOptimJL:Plots:OrdinaryDiffEq:DimensionalData:GeoMakie:CairoMakie:WGLMakie:Tyler:YAXArrays:NetCDF:Zarr:TileProvider
 export julia_version_short=$(grep -o '^[0-9]*\.[0-9]*' <<< $julia_version)
 
 # ## Download and unpack Julia

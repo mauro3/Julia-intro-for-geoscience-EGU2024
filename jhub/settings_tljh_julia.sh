@@ -48,4 +48,4 @@ export julia_version="1.10.2"
 
 # Packages to be installed system-wide, separate entries with ":"
 # (IJulia gets installed irrespective)
-export julia_packages=Statistics:Markdown:Literate:Optimization:OptimizationOptimJL:Plots:OrdinaryDiffEq:DimensionalData:GeoMakie:CairoMakie:WGLMakie:Tyler:YAXArrays:NetCDF:Zarr
+export julia_packages=Downloads:Dates:Statistics:Markdown:Literate:Optimization:OptimizationOptimJL:Plots:OrdinaryDiffEq:DimensionalData:GeoMakie:CairoMakie:WGLMakie:Tyler:YAXArrays:NetCDF:Zarr:TileProvider
