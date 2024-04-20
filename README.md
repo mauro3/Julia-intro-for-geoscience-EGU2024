@@ -31,6 +31,7 @@ work:
 
 - install Julia (do install 1.10 or later, as quality of life is much
   better that way)
+  - we recommend to do this via `juliaup` https://github.com/JuliaLang/juliaup
 - clone / download this repository
 - launch the Julia REPL in folder of the repository with `julia --project`
 - hit `]` to enter package mode and type `instantiate`
