@@ -1,3 +1,5 @@
+Note: 2025 edition is at [github.com/mauro3/EGU2025-Julia-intro-and-showcase-for-geoscience](https://github.com/mauro3/EGU2025-Julia-intro-and-showcase-for-geoscience)
+
 # [Introduction to Julia for Geoscience](https://meetingorganizer.copernicus.org/EGU24/session/49443) - EGU 2024
 
 Julia offers a fresh approach to scientific computing, high-performance computing and data crunching. Recently designed from the ground up Julia avoids many of the weak points of older, widely used programming languages in science such as Python, Matlab, and R. Julia is an interactive scripting language, yet it executes with similar speed as C(++) and Fortran. Its qualities make it an appealing tool for the geo-scientist.
